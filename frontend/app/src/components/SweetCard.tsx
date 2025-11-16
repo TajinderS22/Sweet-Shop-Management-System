@@ -15,7 +15,7 @@ export default function SweetCard({
   isAdmin?: boolean;
 }) {
   return (
-    <div className="bg-white p-4 rounded shadow flex flex-col">
+    <div className="bg-orange-100 border border-orange-800 p-4 rounded-md shadow flex flex-col">
       <div className="flex justify-between items-center">
         <h3 className="font-bold">{sweet.name}</h3>
         <span className="text-sm text-gray-500">{sweet.category}</span>

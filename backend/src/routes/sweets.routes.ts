@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { auth } from "../middlewares/auth.js";
-import { admin } from "../middlewares/admin.js";
-import { validate } from "../middlewares/sweets.validation.middleware.js";
+import { auth } from "../middlewares/auth";
+import { admin } from "../middlewares/admin";
+import { validate } from "../middlewares/sweets.validation.middleware";
 import {
   createSweetSchema,
   updateSweetSchema,
-} from '../validations/sweets.validation.js';
+} from '../validations/sweets.validation';
 
 import {
   addSweet,
@@ -15,7 +15,7 @@ import {
   remove,
   purchase,
   restock,
-} from "../controllers/sweets.controllers.js";
+} from "../controllers/sweets.controllers";
 
 const sweetsRouter = Router();
 

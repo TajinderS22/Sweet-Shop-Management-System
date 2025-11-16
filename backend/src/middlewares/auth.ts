@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import type { JwtPayloadData } from "../types/jwt.js";
+import type { JwtPayloadData } from "../types/jwt";
 
 export interface AuthRequest extends Request {
   user?: JwtPayloadData;
@@ -8,7 +8,7 @@ export interface AuthRequest extends Request {
 
 export const auth = (req: AuthRequest, res: Response, next: NextFunction) => {
   const header = req.headers.authorization;
-  console.log(header)
+  // console.log(header)
 
   if (!header || !header.startsWith("Bearer ")) {
     return res.status(401).json({ message: "Not authorized" });
@@ -16,7 +16,7 @@ export const auth = (req: AuthRequest, res: Response, next: NextFunction) => {
 
   const token = header.split(" ")[1];
 
-  console.log(token)
+  // console.log(token)
 
   if (!token) {
     return res.status(401).json({ message: "Not authorized" });

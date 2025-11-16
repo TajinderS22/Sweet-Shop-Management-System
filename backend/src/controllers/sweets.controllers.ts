@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import * as SweetService from "../services/sweets.service.js";
+import * as SweetService from "../services/sweets.service";
 
 export const addSweet = async (req: Request, res: Response) => {
   try {

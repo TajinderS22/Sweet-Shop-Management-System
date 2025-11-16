@@ -50,7 +50,7 @@ export default function Dashboard() {
 
   const handleSearch = async (q: SweetSearchQuery) => {
     try {
-      const res = await searchSweets({ ...q, jwt: jwt! });
+      const res = await searchSweets(q,jwt!);
       setSweets(res);
     } catch {
       toast.error("Search failed");

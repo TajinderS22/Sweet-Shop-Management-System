@@ -1,5 +1,5 @@
 import type { Response, NextFunction } from "express";
-import type { AuthRequest } from "./auth.js";
+import type { AuthRequest } from "./auth";
 
 export const admin = (
   req: AuthRequest,

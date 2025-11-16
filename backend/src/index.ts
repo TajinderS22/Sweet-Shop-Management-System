@@ -1,29 +1,17 @@
 import dotenv from "dotenv";
-import cors from "cors";
-dotenv.config();   
+dotenv.config();
 
-import express from 'express';
-import authRouter from './routes/auth.routes.js';
-import { connectDB } from './database.js';
-import sweetsRouter from "./routes/sweets.routes.js";
+import app from "./app";
+import { connectDB } from "./database";
 
 const port = process.env.SERVER_PORT || 3000;
 
-const app = express();
-app.use(express.json());
-app.use(cors({
-  origin:"*"
-}))
-
-const startServer = async () => {
+async function startServer() {
   await connectDB();
-
-  app.use('/api', authRouter);
-  app.use('/api',sweetsRouter)
 
   app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });
-};
+}
 
 startServer();

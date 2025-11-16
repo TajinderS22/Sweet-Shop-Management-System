@@ -1,5 +1,5 @@
-import Sweet from "../models/Sweets.js";
-import type { CreateSweetData, UpdateSweetData } from "../types/sweets.js";
+import Sweet from "../models/Sweets";
+import type { CreateSweetData, UpdateSweetData } from "../types/sweets";
 
 export const createSweet = async (data: CreateSweetData) => {
   const exists = await Sweet.findOne({ name: data.name });

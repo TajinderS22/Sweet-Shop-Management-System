@@ -10,19 +10,25 @@ export const getSweets = async(  jwt:string, ) => {
     })
     return res.data
 }
-export const searchSweets = async (q: {
-  name?: string;
-  category?: string;
-  minPrice?: number;
-  maxPrice?: number;  
-  jwt:string, 
-}) => {
-  const res = await axios.get("http://localhost:3000"+"/api/sweets/search", {
+export const searchSweets = async (
+  q: {
+    name?: string;
+    category?: string;
+    minPrice?: number;
+    maxPrice?: number;
+  },
+  jwt: string
+) => {
+  const res = await axios.get("http://localhost:3000/api/sweets/search", {
     params: q,
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
   });
 
   return res.data;
 };
+
 
 
 export const createSweet = async (data: {
