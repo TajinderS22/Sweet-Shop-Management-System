@@ -8,6 +8,8 @@ This project follows clean architecture, modular routing, proper error handling,
 
 <!-- [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://your-url.com) -->
 
+### ThisProject will be live soon on my personal portfolio tajinder.xyz Stay Tuned
+---
 
 ##  Features
 
@@ -197,19 +199,19 @@ This project was developed with the active and transparent use of AI tools to en
 
 Using AI tools significantly improved:
 
-### ✔ Speed
+###  Speed
 
 Completed architecture, debugging, and refactoring faster than working manually.
 
-### ✔ Learning
+### Learning
 
 AI acted as a real-time mentor — especially for Jest patterns, real world code practicies,  and TypeScript Types defination.
 
-### ✔ Debugging
+### Debugging
 
 AI helped quickly identify issues in JWT handling, React State loops(useEffect), and TypeScript types .
 
-### ✔ Confidence
+### Confidence
 
 I validated decisions by comparing my logic with that of AI tools.
 
