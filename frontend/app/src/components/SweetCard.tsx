@@ -1,4 +1,3 @@
-import React from "react";
 import type { Sweet } from "../types";
 
 export default function SweetCard({

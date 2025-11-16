@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/slices/UserSlice";
+import { ServerAddress } from "../utils/constants";
 
 type FormData = {
     name: string,
@@ -18,8 +19,7 @@ export default function Login() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      const res = await axios.post("http://localhost:3000"+"/api/auth/login",data);
-      console.log(res.data)
+      const res = await axios.post(ServerAddress+"/api/auth/login",data);
         
       if(res.status==200){
         toast.success("Logged in");

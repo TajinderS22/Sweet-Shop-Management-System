@@ -4,7 +4,7 @@ const userSlice=createSlice({
     name:"user",
     initialState:null,
     reducers:{
-        setUser:(state,action)=> action.payload,
+        setUser:(_state,action)=> action.payload,
         logout:()=> {
             localStorage.removeItem('jwt');
             localStorage.removeItem('user');

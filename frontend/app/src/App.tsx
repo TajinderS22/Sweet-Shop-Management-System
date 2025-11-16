@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -20,38 +19,40 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      <nav className="bg-white shadow p-4 flex justify-between">
-        <div className="flex items-center gap-4">
-          <Link to="/" className="font-bold text-xl">
-            SweetShop
-          </Link>
-        </div>
+      <div className="border-b">
+        <nav className="bg-white container mx-auto  p-4 flex justify-between">
+          <div className="flex items-center gap-4">
+            <Link to="/" className="font-bold text-xl">
+              SweetShop
+            </Link>
+          </div>
 
-        <div className="flex items-center gap-4">
-          {!user && (
-            <>
-              <Link to="/login">Login</Link>
-              <Link to="/register">Register</Link>
-            </>
-          )}
+          <div className="flex items-center gap-4">
+            {!user && (
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>
+            )}
 
-          {user && (
-            <>
-              {/* {user.role! === "admin" && <Link to="/admin">Admin</Link>} */}
+            {user && (
+              <>
+                {/* {user.role! === "admin" && <Link to="/admin">Admin</Link>} */}
 
-              {/* FIX 3 — correct logout handler */}
-              <button
-                className="text-sm px-3 py-1 bg-red-500 text-white rounded"
-                onClick={() => dispatch(logout())}
-              >
-                Logout
-              </button>
-            </>
-          )}
-        </div>
-      </nav>
+                {/* FIX 3 — correct logout handler */}
+                <button
+                  className="text-sm px-3 py-1 bg-red-500 text-white rounded"
+                  onClick={() => dispatch(logout())}
+                >
+                  Logout
+                </button>
+              </>
+            )}
+          </div>
+        </nav>
+      </div>
 
-      <main className="container mx-auto p-4">
+      <main className="container w-11/12 mx-auto p-4">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />

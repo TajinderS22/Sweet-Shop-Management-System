@@ -4,6 +4,7 @@ import { z } from "zod";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ServerAddress } from "../utils/constants";
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -29,11 +30,16 @@ export default function RegisterAdmin() {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const res = await axios.post(
-        "http://localhost:3000/api/auth/register-admin",
+        ServerAddress+"/api/auth/register-admin",
         data
       );
-      toast.success("Admin Registered Successfully");
-      navigate("/login");
+      if(res.status==200){
+        toast.success("Admin Registered Successfully");
+        navigate("/login");
+      }else{
+        toast.error("some error occured")
+        return 
+      }
     } catch (err) {
       const message =
         (axios.isAxiosError(err) && err.response?.data?.message) ||

@@ -1,9 +1,10 @@
 import axios from "axios";
 import type { Sweet } from "../types";
+import { ServerAddress } from "../utils/constants";
 
 export const getSweets = async(  jwt:string, ) => {
     console.log(jwt)
-    const res= await axios.get("http://localhost:3000"+'/api/sweets',{
+    const res= await axios.get(ServerAddress+'/api/sweets',{
       headers:{
         authorization:`Bearer ${jwt}` 
       }
@@ -19,7 +20,7 @@ export const searchSweets = async (
   },
   jwt: string
 ) => {
-  const res = await axios.get("http://localhost:3000/api/sweets/search", {
+  const res = await axios.get(ServerAddress+"/api/sweets/search", {
     params: q,
     headers: {
       Authorization: `Bearer ${jwt}`,
@@ -39,7 +40,7 @@ export const createSweet = async (data: {
   
 },jwt:string) => {
   const res = await axios.post(
-    "http://localhost:3000"+"/api/sweets",
+    ServerAddress+"/api/sweets",
     data,
     {
       headers: {
@@ -53,7 +54,7 @@ export const createSweet = async (data: {
 
 
 export const updateSweet = async (id: string,  jwt:string,  data: Partial<Sweet>) =>{
-  const res=await axios.put("http://localhost:3000"+`/api/sweets/${id}`, 
+  const res=await axios.put(ServerAddress+`/api/sweets/${id}`, 
     data,
     {
       headers: {
@@ -64,7 +65,7 @@ export const updateSweet = async (id: string,  jwt:string,  data: Partial<Sweet>
     return res.data
 }
 export const deleteSweet = async (id: string  ,jwt:string, ) =>{
-  const res=await axios.delete("http://localhost:3000"+`/api/sweets/${id}`,
+  const res=await axios.delete(ServerAddress+`/api/sweets/${id}`,
     {
       headers: {
         Authorization: `Bearer ${jwt}`,
@@ -74,7 +75,7 @@ export const deleteSweet = async (id: string  ,jwt:string, ) =>{
     return res.data
 }
 export const purchaseSweet = async (id: string,jwt:string  ) =>{
-  const res=await axios.post("http://localhost:3000"+`/api/sweets/${id}/purchase`,{
+  const res=await axios.post(ServerAddress+`/api/sweets/${id}/purchase`,{
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
@@ -82,7 +83,7 @@ export const purchaseSweet = async (id: string,jwt:string  ) =>{
     return res.data
 }
 export const restockSweet  = async (id: string,  jwt:string,  amount: number) =>{
-  const res=await axios.post("http://localhost:3000"+`/api/sweets/${id}/restock`, { amount },{
+  const res=await axios.post(ServerAddress+`/api/sweets/${id}/restock`, { amount },{
       headers: {
         Authorization: `Bearer ${jwt}`,
       },

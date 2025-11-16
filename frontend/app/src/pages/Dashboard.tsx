@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { getSweets, searchSweets } from "../api/sweets";
 import SweetCard from "../components/SweetCard";
 import SearchBar from "../components/SearchBar";

@@ -99,14 +99,16 @@ export default function AdminPanel() {
     <div>
       <h1 className="text-2xl font-bold mb-4">Admin Panel</h1>
 
-      <div className="bg-white p-4 rounded mb-4">
-        <h3 className="font-bold mb-2">Create Sweet</h3>
-        <form onSubmit={handleCreate} className="grid grid-cols-1 md:grid-cols-5 gap-2">
-          <input name="name" placeholder="Name" className="p-2 border" />
-          <input name="category" placeholder="Category" className="p-2 border" />
-          <input name="price" type="number" placeholder="Price" className="p-2 border" />
-          <input name="quantity" type="number" placeholder="Quantity" className="p-2 border" />
-          <button className="col-span-1 md:col-span-5 bg-indigo-600 text-white p-2 rounded">Create</button>
+      <div className="bg-slate-100 rounded-md p-4 shadow-sm mb-4 ">
+        <h3 className="font-bold text-xl mb-6">Create Sweet</h3>
+        <form onSubmit={handleCreate} className="grid grid-cols-1 w-11/12 mx-auto  md:grid-cols-4 gap-2">
+          <input name="name" placeholder="Name" className="p-2 border rounded-md shadow" />
+          <input name="category" placeholder="Category" className="p-2 border rounded-md shadow" />
+          <input name="price" type="number" placeholder="Price" className="p-2 border rounded-md shadow" />
+          <input name="quantity" type="number" placeholder="Quantity" className="p-2 border rounded-md shadow" />
+          <div className="col-span-1 w-full flex justify-end md:col-span-5">
+            <button className=" w-3/12 mt-3 min-w-48  bg-indigo-600 text-white p-2 rounded-md">Create</button>
+          </div>
         </form>
       </div>
 
@@ -135,10 +137,10 @@ export default function AdminPanel() {
             }
               className="space-y-2"
             >
-              <input name="name" defaultValue={editing.name} className="w-full p-2 border" />
-              <input name="category" defaultValue={editing.category} className="w-full p-2 border" />
-              <input name="price" defaultValue={editing.price} type="number" className="w-full p-2 border" />
-              <input name="quantity" defaultValue={editing.quantity} type="number" className="w-full p-2 border" />
+              <input name="name" defaultValue={editing.name} className="w-full p-2 border rounded-md shadow" />
+              <input name="category" defaultValue={editing.category} className="w-full p-2 border rounded-md shadow" />
+              <input name="price" defaultValue={editing.price} type="number" className="w-full p-2 border rounded-md shadow" />
+              <input name="quantity" defaultValue={editing.quantity} type="number" className="w-full p-2 border rounded-md shadow" />
               <div className="flex gap-2">
                 <button className="bg-indigo-600 text-white p-2 rounded">Save</button>
                 <button type="button" className="bg-gray-300 p-2 rounded" onClick={() => setEditing(null)}>

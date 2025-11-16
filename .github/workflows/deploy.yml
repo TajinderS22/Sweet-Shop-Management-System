@@ -1,0 +1,77 @@
+name: Deploy FE & BE
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Build Backend
+        run: |
+          cd backend
+          npm install
+          npm run build
+
+      - name: Build Frontend
+        run: |
+          cd frontend/app
+          npm install
+          npm run build
+
+      - name: Prepare Deploy Folders
+        run: |
+          mkdir -p deploy-be deploy-fe
+          cp -r backend/dist/* deploy-be/
+          cp -r frontend/app/dist/* deploy-fe/
+
+      - name: Add SSH Key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
+          chmod 600 key.pem
+
+      - name: Upload Backend Dist
+        run: |
+          rsync -avz --delete -e "ssh -i key.pem -o StrictHostKeyChecking=no" \
+            ./deploy-be/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/backend-temp/
+
+      - name: Upload Frontend Dist
+        run: |
+          rsync -avz --delete -e "ssh -i key.pem -o StrictHostKeyChecking=no" \
+            ./deploy-fe/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/frontend-temp/
+
+      - name: Move Backend to Final
+        run: |
+          ssh -i key.pem -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+            sudo rsync -avz --delete /tmp/backend-temp/ /home/ubuntu/sweetshop/Sweet-Shop-Management-System/backend/dist/ &&
+            sudo rm -rf /tmp/backend-temp/
+          "
+
+      - name: Move Frontend to Final
+        run: |
+          ssh -i key.pem -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+            sudo rsync -avz --delete /tmp/frontend-temp/ /home/ubuntu/sweetshop/Sweet-Shop-Management-System/frontend/dist/ &&
+            sudo rm -rf /tmp/frontend-temp/
+          "
+
+      - name: Restart PM2
+        run: |
+          ssh -i key.pem -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+            export NVM_DIR=\"\$HOME/.nvm\"
+            [ -s \"\$NVM_DIR/nvm.sh\" ] && . \"\$NVM_DIR/nvm.sh\"
+            cd /home/ubuntu/sweetshop/backend
+            pm2 reload all
+          "
