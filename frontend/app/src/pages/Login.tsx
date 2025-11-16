@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/slices/UserSlice";
 
 type FormData = {
     name: string,
@@ -12,15 +14,24 @@ export default function Login() {
   const { register, handleSubmit } = useForm<FormData>();
   const navigate = useNavigate();
 
+  const dispatch=useDispatch()
+
   const onSubmit = async (data: FormData) => {
-    console.log(data)
     try {
       const res = await axios.post("http://localhost:3000"+"/api/auth/login",data);
+      console.log(res.data)
         
       if(res.status==200){
         toast.success("Logged in");
         localStorage.setItem('jwt',res.data.token)
-        navigate("/");
+        localStorage.setItem('user', JSON.stringify(res.data.user))
+        dispatch(setUser(res.data.user))
+
+        if(res.data.user.role=='admin'){
+          navigate("/admin");
+        }else{
+          navigate("/");
+        }
       }else{
         toast.error("login failed")
       }

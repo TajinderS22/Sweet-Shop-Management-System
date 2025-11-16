@@ -7,13 +7,14 @@ import axios from "axios";
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string(),
+  email: z.string().email("Invalid email format"),
   password: z.string().min(6, "Password must be at least 6 characters"),
+  secret: z.string().min(1, "Secret is required"),
 });
 
 type FormData = z.infer<typeof schema>;
 
-export default function Register() {
+export default function RegisterAdmin() {
   const {
     register,
     handleSubmit,
@@ -25,12 +26,13 @@ export default function Register() {
   const navigate = useNavigate();
 
   const onSubmit = async (data: FormData) => {
-
-
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const res = await axios.post("http://localhost:3000/api/auth/register", data);
-      toast.success("Registered Successfully");
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/register-admin",
+        data
+      );
+      toast.success("Admin Registered Successfully");
       navigate("/login");
     } catch (err) {
       const message =
@@ -44,8 +46,8 @@ export default function Register() {
 
   return (
     <div className="h-[70svh] flex flex-col justify-center">
-      <div className=" w-lg mx-auto bg-slate-200 p-6 rounded-md shadow">
-        <h2 className="text-xl font-bold mb-4">Register</h2>
+      <div className="w-md mx-auto bg-slate-200 p-6 rounded-md shadow">
+        <h2 className="text-xl font-bold mb-4">Register Admin</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
           <div>
@@ -80,6 +82,18 @@ export default function Register() {
             />
             {errors.password && (
               <p className="text-red-500 text-sm">{errors.password.message}</p>
+            )}
+          </div>
+
+          <div>
+            <input
+              {...register("secret")}
+              type="text"
+              placeholder="Secret Code"
+              className="w-full p-2 border rounded"
+            />
+            {errors.secret && (
+              <p className="text-red-500 text-sm">{errors.secret.message}</p>
             )}
           </div>
 

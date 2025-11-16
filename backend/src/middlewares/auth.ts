@@ -8,12 +8,15 @@ export interface AuthRequest extends Request {
 
 export const auth = (req: AuthRequest, res: Response, next: NextFunction) => {
   const header = req.headers.authorization;
+  console.log(header)
 
   if (!header || !header.startsWith("Bearer ")) {
     return res.status(401).json({ message: "Not authorized" });
   }
 
   const token = header.split(" ")[1];
+
+  console.log(token)
 
   if (!token) {
     return res.status(401).json({ message: "Not authorized" });
@@ -24,7 +27,6 @@ export const auth = (req: AuthRequest, res: Response, next: NextFunction) => {
       token,
       process.env.JWT_SECRET as string
     );
-    console.log(decoded)
     if (
       typeof decoded === "object" &&
       "id" in decoded &&

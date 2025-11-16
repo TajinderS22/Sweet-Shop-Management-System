@@ -14,6 +14,18 @@ export const registerUser = async (
   }
 };
 
+export const registerAdminUser = async (
+  req: Request<RegisterData>,
+  res: Response
+) => {
+  try {
+    const result = await AuthService.registerAdmin(req.body);
+    res.status(201).json(result);
+  } catch (err: any) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
 export const loginUser = async (
   req: Request<{}, {}, LoginData>,
   res: Response

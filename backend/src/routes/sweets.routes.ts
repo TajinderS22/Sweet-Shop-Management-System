@@ -19,7 +19,6 @@ import {
 
 const sweetsRouter = Router();
 
-// Only admin is allowed to create sweets
 sweetsRouter.post("/sweets", auth, validate(createSweetSchema), addSweet);
 
 // get All sweets From Server

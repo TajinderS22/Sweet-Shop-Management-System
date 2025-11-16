@@ -51,7 +51,6 @@ export const registerAdmin = async ({
 
   return {
     message: "Registration successful",
-    token: generateToken((user._id as string).toString(), user.role),
   };
 };
 
@@ -83,7 +82,7 @@ export const register = async ({
 
   return {
     message: "Registration successful",
-    token: generateToken((user._id as string).toString(), user.role),
+    
   };
 };
 
@@ -97,5 +96,6 @@ export const login = async ({ email, password }: LoginData) => {
   return {
     message: "Login successful",
     token: generateToken((user._id as string).toString(), user.role),
+    user:user
   };
 };

@@ -9,7 +9,7 @@ dotenv.config();
 export const connectDB = async (): Promise<void> => {
   const uri = process.env.MONGO_URI;
 
-  console.log(uri)
+  // console.log(uri)
 
   if (!uri) {
     console.error("MONGO_URI is missing ");
@@ -17,7 +17,7 @@ export const connectDB = async (): Promise<void> => {
   }
 
   try {
-    console.log("⏳ Connecting to MongoDB...");
+    console.log(" Connecting to MongoDB");
 
     await mongoose.connect(uri, {
       dbName: process.env.DB_NAME || "sweetshop",
