@@ -1,4 +1,6 @@
 import Sweet from "../models/Sweets";
+import Purchase from "../models/Purchase";
+
 import type { CreateSweetData, UpdateSweetData } from "../types/sweets";
 
 export const createSweet = async (data: CreateSweetData) => {
@@ -42,16 +44,31 @@ export const deleteSweet = async (id: string) => {
   if (!result) throw new Error("Sweet not found");
 };
 
-export const purchaseSweet = async (id: string) => {
+
+
+export const purchaseSweet = async (id: string, userId: string, userRole: string) => {
   const sweet = await Sweet.findById(id);
-  
+
   if (!sweet) throw new Error("Sweet not found");
-  if (sweet.quantity <= 0) throw new Error("Out of stock");
+  if (sweet.quantity === 0) throw new Error("Out of stock");
 
   sweet.quantity -= 1;
   await sweet.save();
-  return sweet;
+
+  await Purchase.create({
+    userId,
+    sweetId: (sweet._id as any).toString(),
+    sweetName: sweet.name,
+    price: sweet.price,
+    quantityPurchased: 1,
+  });
+
+  return {
+    message: "Sweet purchased successfully",
+    sweet,
+  };
 };
+
 
 export const restockSweet = async (id: string, amount: number) => {
   const sweet = await Sweet.findById(id);

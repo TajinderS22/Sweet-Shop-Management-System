@@ -6,9 +6,10 @@ This project follows clean architecture, modular routing, proper error handling,
 
 ---
 
-<!-- [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://your-url.com) -->
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://sweetshop.tajinder.xyz) 
+### [Sweet Shop Management](https://sweetshop.tajinder.xyz)
 
-### ThisProject will be live soon on my personal portfolio tajinder.xyz Stay Tuned
+### ThisProject will be live soon on my personal portfolio [tajinder.xyz](https://tajinder.xyz) Stay Tuned
 ---
 
 ##  Features
@@ -183,6 +184,7 @@ This project was developed with the active and transparent use of AI tools to en
 * Help me refine the search functionality and gave me boilerplate for It and then I added my learned logic into it.
 * Explained debugging issues (React state loops, JWT decoding problems).
 * Helped me learn and refine Jest + Supertest test patterns.
+* Created landing page for the project
 
 ### **GitHub Copilot**
 

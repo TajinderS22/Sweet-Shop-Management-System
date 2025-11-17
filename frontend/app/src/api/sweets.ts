@@ -74,14 +74,20 @@ export const deleteSweet = async (id: string  ,jwt:string, ) =>{
   )
     return res.data
 }
-export const purchaseSweet = async (id: string,jwt:string  ) =>{
-  const res=await axios.post(ServerAddress+`/api/sweets/${id}/purchase`,{
+export const purchaseSweet = async (id: string, jwt: string) => {
+  const res = await axios.post(
+    ServerAddress+`/api/sweets/${id}/purchase`,
+    {},
+    {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
-    })
-    return res.data
-}
+    }
+  );
+
+  return res.data;
+};
+
 export const restockSweet  = async (id: string,  jwt:string,  amount: number) =>{
   const res=await axios.post(ServerAddress+`/api/sweets/${id}/restock`, { amount },{
       headers: {

@@ -1,5 +1,5 @@
 import  { useEffect, useState } from "react";
-import { getSweets, searchSweets } from "../api/sweets";
+import { getSweets, purchaseSweet, searchSweets } from "../api/sweets";
 import SweetCard from "../components/SweetCard";
 import SearchBar from "../components/SearchBar";
 import type { Sweet, SweetSearchQuery, User } from "../types";
@@ -73,6 +73,34 @@ export default function Dashboard() {
   //   }
   // };
 
+
+  const handlePurchase = async (id: string) => {
+  try {
+    const res = await purchaseSweet(id, jwt!);
+
+    console.log(res)
+
+      toast.success("Purchased successfully");
+    
+    // decrease quantity locally
+    setSweets((prev) =>
+      prev.map((sweet) =>
+        sweet._id === id
+          ? { ...sweet, quantity: sweet.quantity - 1 }
+          : sweet
+      )
+    );
+  } catch (err) {
+    const message =
+      (axios.isAxiosError(err) && err.response?.data?.message) ||
+      (err instanceof Error && err.message) ||
+      "Something went wrong";
+
+    toast.error(message);
+  }
+};
+
+
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4">Sweets</h1>
@@ -86,6 +114,7 @@ export default function Dashboard() {
             key={s._id}
             sweet={s}
             isAdmin={(user as unknown as User)?.role === "admin"}
+            onPurchase={handlePurchase}
             onEdit={() => {}}
           />
         ))}

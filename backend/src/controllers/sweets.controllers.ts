@@ -1,6 +1,14 @@
 import type { Request, Response } from "express";
 import * as SweetService from "../services/sweets.service";
 
+declare global {
+  namespace Express {
+    interface Request {
+      user?: { id: string; role: string };
+    }
+  }
+}
+
 export const addSweet = async (req: Request, res: Response) => {
   try {
     const sweet = await SweetService.createSweet(req.body);
@@ -48,8 +56,12 @@ export const remove = async (req: Request, res: Response) => {
 
 export const purchase = async (req: Request, res: Response) => {
   try {
-    const sweet = await SweetService.purchaseSweet((req.params.id as string));
-    res.json(sweet);
+    const userId = req.user!.id;
+    const userRole = req.user!.role;
+
+    const result = await SweetService.purchaseSweet(req.params.id, userId, userRole);
+
+    res.status(200).json(result);
   } catch (err: any) {
     res.status(400).json({ message: err.message });
   }
