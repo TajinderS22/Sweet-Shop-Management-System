@@ -13,7 +13,7 @@ export const connectDB = async (): Promise<void> => {
   ? process.env.MONGO_URI_TEST
   : process.env.MONGO_URI;
 
-  console.log(uri)
+  // console.log(uri)
 
   if (!uri) {
     console.error("MONGO_URI is missing ");

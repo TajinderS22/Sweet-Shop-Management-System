@@ -15,10 +15,10 @@ export default function SearchBar({ onSearch }: { onSearch: (q: SweetSearchQuery
         <input value={minPrice} onChange={(e) => setMinPrice(e.target.value)} placeholder="min" className="p-2  not-lg:w-11/12 mx-auto border rounded w-20" />
         <input value={maxPrice} onChange={(e) => setMaxPrice(e.target.value)} placeholder="max" className="p-2  not-lg:w-11/12 mx-auto border rounded w-20" />
       </div>
-      <div className=" flex gap-2 not-lg:flex-col not-lgw-10/12 not-lg:items-end mr-8 ">
+      <div className=" flex gap-2 not-lg:flex-col not-lg:w-full not-lg:items-end pr-4  ">
         
         <button
-          className="bg-gray-300 h-full border  not-lg:min-w-48 px-3 rounded"
+          className="bg-gray-300 h-full border w-24  px-3 rounded"
           onClick={() => {
             setName("");
             setCategory("");
@@ -30,7 +30,7 @@ export default function SearchBar({ onSearch }: { onSearch: (q: SweetSearchQuery
           Clear
         </button>
         <button
-          className="bg-indigo-600 h-full not-lg:min-w-48  text-white px-3 rounded"
+          className="bg-indigo-600 h-full w-24  text-white px-3 rounded"
           onClick={() =>
             onSearch({
               name: name || undefined,

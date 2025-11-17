@@ -3,7 +3,7 @@ import type { Sweet } from "../types";
 import { ServerAddress } from "../utils/constants";
 
 export const getSweets = async(  jwt:string, ) => {
-    console.log(jwt)
+    // console.log(jwt)
     const res= await axios.get(ServerAddress+'/api/sweets',{
       headers:{
         authorization:`Bearer ${jwt}` 

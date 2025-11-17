@@ -30,7 +30,8 @@ export default function Register() {
 
     try {
       const res = await axios.post(ServerAddress+"/api/auth/register", data);
-      if(res.status==200){
+      // console.log(res)
+      if(res.status==201){
         toast.success("Admin Registered Successfully");
         navigate("/login");
       }else{
@@ -49,7 +50,7 @@ export default function Register() {
 
   return (
     <div className="h-[70svh] flex flex-col justify-center">
-      <div className=" w-lg mx-auto bg-slate-200 p-6 rounded-md shadow">
+      <div className=" lg:w-lg mx-auto bg-slate-200 p-6 rounded-md shadow">
         <h2 className="text-xl font-bold mb-4">Register</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
@@ -91,7 +92,7 @@ export default function Register() {
           <div className="w-full flex justify-end px-2 pt-2">
             <button
               type="submit"
-              className="w-3/12 flex justify-center bg-indigo-600 text-white p-2 rounded"
+              className="w-3/12 min-w-24 flex justify-center bg-indigo-600 text-white p-2 rounded"
             >
               Register
             </button>

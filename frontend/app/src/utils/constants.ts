@@ -1,1 +1,1 @@
-export const ServerAddress='http://localhost:3005' 
+export const ServerAddress='https://api.sweetshop.tajinder.xyz'

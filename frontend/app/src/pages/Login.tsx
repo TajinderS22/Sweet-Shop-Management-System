@@ -30,7 +30,7 @@ export default function Login() {
         if(res.data.user.role=='admin'){
           navigate("/admin");
         }else{
-          navigate("/");
+          navigate("/dashboard");
         }
       }else{
         toast.error("login failed")
@@ -50,7 +50,7 @@ export default function Login() {
             <input {...register("email")} placeholder="Email" className="w-full p-2 border" />
             <input {...register("password")} type="password" placeholder="Password" className="w-full p-2 border" />
             <div className="w-full flex justify-end px-2 pt-2">
-                <button className="w-3/12 flex justify-center bg-indigo-600 text-white p-2 rounded">Register</button>
+                <button className="w-3/12 flex justify-center bg-indigo-600 text-white p-2 rounded">Login</button>
             </div>
            </form>
         </div>

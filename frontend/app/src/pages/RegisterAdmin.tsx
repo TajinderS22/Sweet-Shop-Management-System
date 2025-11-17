@@ -52,7 +52,7 @@ export default function RegisterAdmin() {
 
   return (
     <div className="h-[70svh] flex flex-col justify-center">
-      <div className="w-md mx-auto bg-slate-200 p-6 rounded-md shadow">
+      <div className="md:w-md mx-auto bg-slate-200 p-6 rounded-md shadow">
         <h2 className="text-xl font-bold mb-4">Register Admin</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
@@ -106,7 +106,7 @@ export default function RegisterAdmin() {
           <div className="w-full flex justify-end px-2 pt-2">
             <button
               type="submit"
-              className="w-3/12 flex justify-center bg-indigo-600 text-white p-2 rounded"
+              className="w-3/12 min-w-24 flex justify-center bg-indigo-600 text-white p-2 rounded"
             >
               Register
             </button>

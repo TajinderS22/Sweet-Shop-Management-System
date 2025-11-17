@@ -6,7 +6,7 @@ import type { User } from "../types";
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode}> = ({ children }) => {
   const user : User|null = useSelector((state:RootState)=>(state.user));
-  console.log(user)
+  // console.log(user)
   if (!user) return <Navigate to="/login" replace />;
   if ((user as User).role !== "admin") return <Navigate to="/" replace />;
   return <>{children}</>;
