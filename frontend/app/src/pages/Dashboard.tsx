@@ -78,18 +78,21 @@ export default function Dashboard() {
   try {
     const res = await purchaseSweet(id, jwt!);
 
-    console.log(res)
 
+    if(res.status==200){
       toast.success("Purchased successfully");
     
-    // decrease quantity locally
-    setSweets((prev) =>
-      prev.map((sweet) =>
-        sweet._id === id
-          ? { ...sweet, quantity: sweet.quantity - 1 }
-          : sweet
-      )
-    );
+      // decrease quantity locally
+      setSweets((prev) =>
+        prev.map((sweet) =>
+          sweet._id === id
+            ? { ...sweet, quantity: sweet.quantity - 1 }
+            : sweet
+        )
+      );
+    }else{
+      toast.error("Some Error Occured Please come back after a while")
+    }
   } catch (err) {
     const message =
       (axios.isAxiosError(err) && err.response?.data?.message) ||

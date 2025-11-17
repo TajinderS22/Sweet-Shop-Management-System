@@ -8,6 +8,7 @@ export interface AuthRequest extends Request {
 
 export const auth = (req: AuthRequest, res: Response, next: NextFunction) => {
   const header = req.headers.authorization;
+
   // console.log(header)
 
   if (!header || !header.startsWith("Bearer ")) {

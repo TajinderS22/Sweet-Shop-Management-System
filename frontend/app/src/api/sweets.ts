@@ -85,7 +85,7 @@ export const purchaseSweet = async (id: string, jwt: string) => {
     }
   );
 
-  return res.data;
+  return res;
 };
 
 export const restockSweet  = async (id: string,  jwt:string,  amount: number) =>{
