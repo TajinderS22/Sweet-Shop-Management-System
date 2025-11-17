@@ -9,7 +9,7 @@ This project follows clean architecture, modular routing, proper error handling,
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://sweetshop.tajinder.xyz) 
 ### [Sweet Shop Management](https://sweetshop.tajinder.xyz)
 
-### ThisProject will be live soon on my personal portfolio [tajinder.xyz](https://tajinder.xyz) Stay Tuned
+### ThisProject is now Live on my personal portfolio [tajinder.xyz](https://tajinder.xyz) 
 ---
 
 ##  Features
